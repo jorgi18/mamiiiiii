@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Registro</h2>
+  <input type="text" id="codigo" placeholder="Código único">
+  <input type="password" id="password" placeholder="Contraseña">
+  <button (click)="registrar()">Registrarse</button>
+  <p id="mensaje"></p>
+  <p>¿Ya tienes una cuenta?
+    <a [routerLink]="'/crear-cuenta'" class="boton-link">Inicia sesión</a>
+  </p>
+</div>

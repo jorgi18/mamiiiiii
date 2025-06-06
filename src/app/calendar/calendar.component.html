@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calendario Interactivo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      position: fixed;
+      right: -250px;
+      top: 0;
+      height: 100%;
+      width: 250px;
+      background: #222;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+      padding: 2rem 1rem;
+      transition: right 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.open {
+      right: 0;
+    }
+
+    .sidebar h2 {
+      color: #e63946;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar li {
+      padding: 0.75rem;
+      background: #333;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .sidebar li:hover {
+      background: #e63946;
+    }
+
+    .main {
+      flex: 1;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .calendar {
+      width: 350px;
+      background: #1e1e1e;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .calendar h3 {
+      text-align: center;
+      color: #e63946;
+      margin-bottom: 1rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    .calendar-grid div {
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      background: #333;
+      color: #fff;
+    }
+
+    .menu-container {
+      position: fixed;
+      right: 10px;
+      top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      z-index: 1100;
+      gap: 10px;
+    }
+
+    .toggle-btn {
+      background: #e63946;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: #b22234;
+    }
+
+    .user-btn {
+      width: 45px;
+      height: 45px;
+      background: #fff;
+      color: #111;
+      border-radius: 50%;
+      border: none;
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .user-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .user-popup {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      background: #222;
+      border: 2px solid #e63946;
+      border-radius: 10px;
+      padding: 1rem;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(230, 57, 70, 0.6);
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .user-popup h4 {
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .user-popup input, .user-popup textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 6px;
+      background: #333;
+      color: #fff;
+    }
+
+    .close-btn {
+      background: #e63946;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      float: right;
+    }
+
+    .close-btn:hover {
+      background: #b22234;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-container">
+    <button class="user-btn" onclick="toggleUserPopup()">👤</button>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰ Mes</button>
+  </div>
+
+  <div style="position: fixed; top: 10px; left: 10px; z-index: 1100;">
+    <button id="counterBtn" class="toggle-btn">⏱ 0</button>
+  </div>
+
+  <div class="sidebar" id="sidebar">
+    <h2>Selecciona Mes</h2>
+    <ul>
+      <li onclick="changeMonth(0)">Enero</li>
+      <li onclick="changeMonth(1)">Febrero</li>
+      <li onclick="changeMonth(2)">Marzo</li>
+      <li onclick="changeMonth(3)">Abril</li>
+      <li onclick="changeMonth(4)">Mayo</li>
+      <li onclick="changeMonth(5)">Junio</li>
+      <li onclick="changeMonth(6)">Julio</li>
+      <li onclick="changeMonth(7)">Agosto</li>
+      <li onclick="changeMonth(8)">Septiembre</li>
+      <li onclick="changeMonth(9)">Octubre</li>
+      <li onclick="changeMonth(10)">Noviembre</li>
+      <li onclick="changeMonth(11)">Diciembre</li>
+    </ul>
+  </div>
+
+
+  <div class="main">
+
+    <div class="user-popup" id="userPopup">
+      <h4>Información del Usuario</h4>
+      <input type="text" placeholder="Nombre" />
+      <input type="email" placeholder="Correo electrónico" />
+      <textarea placeholder="Notas personales" rows="3"></textarea>
+      <input type="number" id="selectedDayInput" placeholder="Día (1-31)" min="1" max="31" />
+      <button class="close-btn" onclick="toggleUserPopup()">Cerrar pestaña</button>
+    </div>
+
+    <div class="calendar">
+      <h3 id="month-title">Enero</h3>
+      <div class="calendar-grid" id="calendar-grid"></div>
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const monthTitle = document.getElementById('month-title');
+    const calendarGrid = document.getElementById('calendar-grid');
+    const userPopup = document.getElementById('userPopup');
+    const selectedDayInput = document.getElementById('selectedDayInput');
+
+    const months = [
+      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ];
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('open');
+    }
+
+    function toggleUserPopup() {
+      if (userPopup.style.display === 'none' || userPopup.style.display === '') {
+        userPopup.style.display = 'block';
+      } else {
+        userPopup.style.display = 'none';
+      }
+    }
+
+    function changeMonth(monthIndex) {
+      const now = new Date();
+      const year = now.getFullYear();
+      const days = new Date(year, monthIndex + 1, 0).getDate();
+      const firstDay = new Date(year, monthIndex, 1).getDay();
+
+      monthTitle.textContent = months[monthIndex];
+      calendarGrid.innerHTML = '';
+
+      const weekdays = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
+      weekdays.forEach(day => {
+        const dayDiv = document.createElement('div');
+        dayDiv.style.fontWeight = 'bold';
+        dayDiv.textContent = day;
+        calendarGrid.appendChild(dayDiv);
+      });
+
+      for (let i = 0; i < firstDay; i++) {
+        const empty = document.createElement('div');
+        calendarGrid.appendChild(empty);
+      }
+
+      for (let d = 1; d <= days; d++) {
+        const dayCell = document.createElement('div');
+        dayCell.textContent = d;
+        calendarGrid.appendChild(dayCell);
+      }
+
+      toggleSidebar();
+    }
+
+    window.onload = () => changeMonth(0);
+
+    let counting = false;
+    let counter = 0;
+    let intervalId = null;
+
+    const counterBtn = document.getElementById('counterBtn');
+
+    counterBtn.addEventListener('click', () => {
+      if (!counting) {
+        counting = true;
+        intervalId = setInterval(() => {
+          counter++;
+          counterBtn.textContent = `⏹ ${counter}`;
+        }, 1000);
+      } else {
+        counting = false;
+        clearInterval(intervalId);
+        counterBtn.textContent = `⏱ ${counter}`;
+
+        const targetDay = parseInt(selectedDayInput.value);
+        if (!isNaN(targetDay)) {
+          insertValueInDay(targetDay, counter);
+        }
+
+        counter = 0;
+      }
+    });
+
+    function insertValueInDay(day, value) {
+      const allCells = calendarGrid.querySelectorAll('div');
+      let offset = 7;
+      for (let i = offset; i < allCells.length; i++) {
+        const cell = allCells[i];
+        if (parseInt(cell.textContent) === day) {
+          const existingText = cell.textContent;
+          cell.innerHTML = `<strong>${existingText}</strong><br><small style="color:#00ffae;">${value}</small>`;
+          break;
+        }
+      }
+    }
+  </script>
+</body>
+</html>
