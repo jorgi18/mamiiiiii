@@ -1,12 +1,14 @@
-<div class="container">
-  <h2>Registro</h2>
-  <input type="text" placeholder="Nombre completo" [(ngModel)]="nombreUsuario" required>
-  <input type="email" placeholder="Correo electrónico" [(ngModel)]="emailRegistro" required>
-  <input type="password" placeholder="Contraseña" [(ngModel)]="passwordRegistro" required>
+<div class="registro-wrapper">
+  <div class="container">
+    <h2>Registro</h2>
+    <input type="text" placeholder="Nombre completo" [(ngModel)]="nombreUsuario" required>
+    <input type="email" placeholder="Correo electrónico" [(ngModel)]="emailRegistro" required>
+    <input type="password" placeholder="Contraseña" [(ngModel)]="passwordRegistro" required>
 
-  <button (click)="registrar()">Registrarse</button>
-  <p id="mensaje" style="color: red;">{{ mensaje }}</p>
-  <p>¿Ya tienes una cuenta?
-    <a [routerLink]="'/crear-cuenta'" class="boton-link">Inicia sesión</a>
-  </p>
+    <button (click)="registrar()">Registrarse</button>
+    <p id="mensaje">{{ mensaje }}</p>
+    <p>¿Ya tienes una cuenta?
+      <a [routerLink]="'/crear-cuenta'" class="boton-link">Inicia sesión</a>
+    </p>
+  </div>
 </div>

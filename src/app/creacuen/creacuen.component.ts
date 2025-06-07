@@ -1,4 +1,3 @@
-// src/app/creacuen/creacuen.component.ts
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
@@ -45,8 +44,7 @@ export class CreacuenComponent {
       console.log('Inicio de sesión exitoso! Usuario:', userCredential.user);
       this.mensaje = '¡Inicio de sesión exitoso! Redirigiendo...';
 
-      // *** CAMBIO AQUÍ: Redirigir a '/calendar' en lugar de '/home' ***
-      this.router.navigate(['/calendar']); // Redirige al calendario
+      this.router.navigate(['/calendar']); 
 
     } catch (error: any) {
      

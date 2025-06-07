@@ -1,66 +1,56 @@
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-form {
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    background-color: #EEEEEE;
-
-    margin: auto; 
-}
-
-h2 {
-    text-align: center;
-    font-size: 30px;
-    text-transform: uppercase;
-    color: #2E2E2E;
-    margin-bottom: 25px;
-}
-
-label, p {
-    font-size: 17px;
-    color: #575757;
-    margin-bottom: 10px;
-}
-
-input[type="text"], input[type="password"] { 
-    padding: 17px 11px;
-    border: 1px solid #ca0000;
-    border-radius: 25px;
-    margin-bottom: 25px;
-    background-color: #FAFAFC;
-    outline: none;
-    color: #ca0000;
-    font-size: 17px;
-}
-
-.btn-1 {
-    background-color: #ef0000;
-    font-size: 15px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    cursor: pointer;
-    padding: 17px 11px; 
-    border: 1px solid #ef0000; 
-    border-radius: 25px;
-    margin-bottom: 25px; 
-}
-
-.btn-1:hover {
-    background-color: #280000;
-}
-
-.remember {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-}
-
-@media(max-width:991px) {
-    form {
-        width: 100%;
-        padding: 30px; 
-    }
-}
+        label, p {
+            font-size: 17px;
+            color: #575757;
+        }
+        .container {
+            background: #f0f0f1;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 25px;
+            margin-bottom: 25px;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            padding: 10px;
+            margin: 10px auto;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ca0000;
+            border-radius: 25px;
+            display: block;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ca0000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+        button:hover {
+            background-color:  #560101;
+        }
+        p#mensaje {
+            color: red;
+            margin-top: 10px;
+        }
+        .registro-wrapper {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+             background-color: #f4f4f4;
+        }

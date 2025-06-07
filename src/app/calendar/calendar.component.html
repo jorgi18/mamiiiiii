@@ -1,6 +1,9 @@
+<div class="sidebar-toggle-container">
+  <button class="toggle-btn" (click)="toggleSidebar()">☰ Mes</button>
+</div>
+
 <div class="menu-container">
   <button class="user-btn" (click)="toggleUserPopup()">👤</button>
-  <button class="toggle-btn" (click)="toggleSidebar()">☰ Mes</button>
 </div>
 
 <div style="position: fixed; top: 10px; left: 10px; z-index: 1100;">
@@ -26,7 +29,7 @@
     <input type="email" placeholder="Correo electrónico" />
     <textarea placeholder="Notas personales" rows="3"></textarea>
     <input type="number" [(ngModel)]="selectedDayInput" placeholder="Día (1-31)" min="1" max="31" />
-    <button class="close-btn" (click)="toggleUserPopup()">Cerrar pestaña</button>
+  <button class="close-btn" (click)="logoutAndNavigate()">Cerrar Sesión</button>
   </div>
 
   <div class="calendar">
