@@ -1,9 +1,7 @@
-// calendar.component.ts
-
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms'; 
-import { Router } from '@angular/router'; // <-- AÑADIDO: Importación del Router
+import { Router } from '@angular/router'; 
 
 import { Auth, user, User } from '@angular/fire/auth';
 import { Firestore, collection, doc, setDoc, getDoc, updateDoc } from '@angular/fire/firestore';
@@ -31,16 +29,16 @@ interface UserDayData {
 })
 export class CalendarComponent implements OnInit, OnDestroy {
 
-  // Propiedades para controlar la visibilidad de elementos
+
   sidebarOpen: boolean = false;
   userPopupOpen: boolean = false;
 
-  // Propiedades para la funcionalidad del contador
+
   counting: boolean = false;
   counter: number = 0;
   intervalId: any = null;
 
-  // Propiedades para la lógica del calendario
+
   months: string[] = [
     'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
     'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
@@ -53,11 +51,11 @@ export class CalendarComponent implements OnInit, OnDestroy {
   currentUser: User | null = null;
   userSubscription: Subscription | undefined;
 
-  // Inyecta Auth, Firestore y el nuevo Router en el constructor
+
   constructor(
     private auth: Auth, 
     private firestore: Firestore,
-    private router: Router // <-- AÑADIDO: Inyección del Router
+    private router: Router
   ) {
     this.currentMonthIndex = new Date().getMonth();
   }
@@ -84,7 +82,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     }
   }
 
-  // --- Métodos de interacción del usuario ---
+
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
@@ -103,12 +101,9 @@ export class CalendarComponent implements OnInit, OnDestroy {
     }
   }
 
-  // --- NUEVO MÉTODO AÑADIDO ---
-  /**
-   * Cierra la sesión del usuario actual y lo redirige a la página de inicio de sesión.
-   */
+  
   logoutAndNavigate() {
-    this.auth.signOut() // Cierra la sesión en Firebase
+    this.auth.signOut()
       .then(() => {
         console.log('Usuario ha cerrado sesión.');
         this.router.navigate(['/creacuen']); 

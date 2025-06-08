@@ -1,56 +1,89 @@
- body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
-        label, p {
-            font-size: 17px;
-            color: #575757;
-        }
-        .container {
-            background: #f0f0f1;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            border-radius: 25px;
-            margin-bottom: 25px;
-        }
-        input[type="email"], input[type="password"]{
-            padding: 10px;
-            margin: 10px auto;
-            width: 100%;
-            max-width: 300px;
-            border: 1px solid #ca0000;
-            border-radius: 25px;
-            display: block;
-            box-sizing: border-box;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #ca0000;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            border-radius: 25px;
-        }
-        button:hover {
-            background-color:  #560101;
-        }
-        p#mensaje {
-            color: red;
-            margin-top: 10px;
-        }
-        .registro-wrapper {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-             background-color: #f4f4f4;
-        }
+.registro-wrapper {
+    background-image: url('../../assets/images/amarillo.png'); 
+    background-color: #000;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5a333; 
+}
+
+label, p {
+    font-size: 17px;
+    color: #575757;
+}
+
+.container {
+    background: #f0f0f1;
+    padding: 50px;
+    border-radius: 30px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 400px; 
+    box-sizing: border-box; 
+}
+
+.container h1, .container h2 { 
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px; 
+}
+
+
+input[type="email"], input[type="password"]{
+    padding: 10px;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 300px; 
+    border: 1px solid #ca0000;
+    border-radius: 25px;
+    display: block;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ca0000;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px; 
+}
+
+button:hover {
+    background-color: #560101;
+}
+
+p#mensaje {
+    color: red;
+    margin-top: 10px;
+}
+
+.container a {
+    color: #ca0000;
+    text-decoration: none;
+    font-size: 17px; 
+    margin-top: 20px;
+    display: inline-block; 
+}
+
+.container a:hover {
+    text-decoration: underline;
+}

@@ -1,4 +1,3 @@
-// src/app/creacuen/creacuen.component.spec.ts
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreacuenComponent } from './creacuen.component';
@@ -9,7 +8,7 @@ describe('CreacuenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreacuenComponent] // Importa el componente standalone aquí
+      imports: [CreacuenComponent] 
     })
     .compileComponents();
 
