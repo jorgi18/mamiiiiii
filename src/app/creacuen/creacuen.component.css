@@ -1,4 +1,4 @@
-    body {
+body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     display: flex;
@@ -30,17 +30,17 @@ label, p {
 .container {
     background: #f0f0f1;
     padding: 50px;
-    border-radius: 30px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 40px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     width: 100%;
     max-width: 400px; 
     box-sizing: border-box; 
 }
 
 .container h1, .container h2 { 
-    font-size: 28px;
+    font-size: 30px;
     color: #333;
     margin-bottom: 30px; 
 }
@@ -49,7 +49,7 @@ label, p {
 input[type="email"], input[type="password"]{
     padding: 10px;
     margin: 20px auto;
-    width: 100%;
+    width: 110%;
     max-width: 300px; 
     border: 1px solid #ca0000;
     border-radius: 25px;

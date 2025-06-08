@@ -1,16 +1,21 @@
-<div class="sidebar-toggle-container">
-  <button class="toggle-btn" (click)="toggleSidebar()">☰ Mes</button>
-</div>
+<div class="top-bar">
+  <div style="position: static;">
+    <button id="counterBtn" class="toggle-btn" (click)="toggleCounter()">
+      <ng-container *ngIf="counting">⏹</ng-container>
+      <ng-container *ngIf="!counting">⏱</ng-container>
+      {{ counter }}
+    </button>
+  </div>
 
-<div class="menu-container">
-  <button class="user-btn" (click)="toggleUserPopup()">👤</button>
-</div>
+  <div class="right-buttons-container">
+    <div class="sidebar-toggle-container">
+      <button class="toggle-btn" (click)="toggleSidebar()">☰ Mes</button>
+    </div>
 
-<div style="position: fixed; top: 10px; left: 10px; z-index: 1100;">
-  <button id="counterBtn" class="toggle-btn" (click)="toggleCounter()">
-    <ng-container *ngIf="counting">⏹</ng-container>
-    <ng-container *ngIf="!counting">⏱</ng-container>
-    {{ counter }} </button>
+    <div class="menu-container" [ngClass]="{'sidebar-open': sidebarOpen}">
+      <button class="user-btn" (click)="toggleUserPopup()">👤</button>
+    </div>
+  </div>
 </div>
 
 <div class="sidebar" [ngClass]="{'open': sidebarOpen}">
@@ -23,17 +28,18 @@
 </div>
 
 <div class="main">
-  <div class="user-popup" [style.display]="userPopupOpen ? 'block' : 'none'">
+  <div class="user-popup" [ngClass]="{'sidebar-open-popup': sidebarOpen}" [style.display]="userPopupOpen ? 'block' : 'none'">
     <h4>Información del Usuario</h4>
     <input type="text" placeholder="Nombre" />
     <input type="email" placeholder="Correo electrónico" />
     <textarea placeholder="Notas personales" rows="3"></textarea>
     <input type="number" [(ngModel)]="selectedDayInput" placeholder="Día (1-31)" min="1" max="31" />
-  <button class="close-btn" (click)="logoutAndNavigate()">Cerrar Sesión</button>
+    <button class="close-btn" (click)="logoutAndNavigate()">Cerrar Sesión</button>
   </div>
 
   <div class="calendar">
-    <h3 id="month-title">{{ monthTitle }}</h3> <div class="calendar-grid" id="calendar-grid">
+    <h3 id="month-title">{{ monthTitle }}</h3>
+    <div class="calendar-grid" id="calendar-grid">
       <div *ngFor="let dayCell of calendarDays"
            [ngClass]="{'weekday': dayCell.isWeekday, 'day-with-value': dayCell.value !== null}">
         <strong>{{ dayCell.day }}</strong>

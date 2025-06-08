@@ -4,17 +4,13 @@
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
 }
-
-
 body {
   background-color: #111;
   color: #fff;
-  display: flex; 
-  height: 100vh; 
-  overflow: hidden; 
+  height: 100vh;
+  overflow: hidden;
+  display: block;
 }
-
-
 .sidebar {
   position: fixed; 
   right: -250px; 
@@ -27,24 +23,17 @@ body {
   transition: right 0.3s ease; 
   z-index: 1000; 
 }
-
-
 .sidebar.open {
   right: 0; 
 }
-
-
 .sidebar h2 {
   color: #e63946; 
   margin-bottom: 1rem;
   text-align: center;
 }
-
-
 .sidebar ul {
   list-style: none; 
 }
-
 .sidebar li {
   padding: 0.75rem;
   background: #333; 
@@ -54,12 +43,9 @@ body {
   cursor: pointer; 
   transition: background 0.2s; 
 }
-
 .sidebar li:hover {
   background: #e63946; 
 }
-
-
 .main {
   background-image: 
   url('../../assets/images/naranja.png');
@@ -69,15 +55,16 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 60px); 
   padding: 2rem;
+  padding-top: 2rem; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+  top: 60px; 
 }
- 
 .calendar {
   width: 550px;
   background: #1e1e1e; 
@@ -85,21 +72,16 @@ body {
   padding: 1rem;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); 
 }
-
-
 .calendar h3 {
   text-align: center;
   color: #e63946;
   margin-bottom: 1rem;
 }
-
-
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr); 
   gap: 5px; 
 }
-
 .calendar-grid div {
   text-align: center;
   padding: 10px;
@@ -112,33 +94,24 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-
 .calendar-grid div.weekday {
   font-weight: bold;
   background: #444; 
   color: #e63946; 
 }
-
-
 .calendar-grid div.day-with-value {
   border: 1px solid #00ffae;
   background: #3a3a3a; 
 }
-
-
-
 .menu-container {
-  position: fixed;
-  right: 10px;
-  top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  z-index: 1100; 
-  gap: 10px;
+  position: static; 
+  right: auto;
+  top: auto; 
+  transition: none;
 }
-
+.menu-container.sidebar-open {
+  right: 260px; 
+}
 .toggle-btn {
   background: #e63946;
   border: none;
@@ -149,17 +122,13 @@ body {
   transition: background 0.3s ease;
 }
 .sidebar-toggle-container {
-  position: fixed; 
-  top: 65px;  
-  left: 10px;    
-  z-index: 1100;
+  position: static; 
+  top: auto; 
+  left: auto; 
 }
-
 .toggle-btn:hover {
   background: #b22234; 
 }
-
-
 .user-btn {
   width: 45px;
   height: 45px;
@@ -173,16 +142,13 @@ body {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
   transition: transform 0.2s ease;
 }
-
 .user-btn:hover {
   transform: scale(1.1); 
 }
-
-
 .user-popup {
   position: absolute; 
-  top: 30px; 
-  right: 50px;
+  top: 10px; 
+  right: 10px; 
   background: #222;
   border: 2px solid #e63946;
   border-radius: 10px;
@@ -191,9 +157,11 @@ body {
   box-shadow: 0 0 10px rgba(230, 57, 70, 0.6);
   display: none; 
   animation: fadeIn 0.3s ease forwards; 
+  transition: right 0.3s ease;
 }
-
-
+.user-popup.sidebar-open-popup {
+  right: 300px;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -204,14 +172,10 @@ body {
     transform: scale(1);
   }
 }
-
-
 .user-popup h4 {
   margin-bottom: 10px;
   color: #fff;
 }
-
-
 .user-popup input, .user-popup textarea {
   width: 100%;
   margin-bottom: 10px;
@@ -221,8 +185,6 @@ body {
   background: #333;
   color: #fff;
 }
-
-
 .close-btn {
   background: #e63946;
   border: none;
@@ -232,7 +194,24 @@ body {
   cursor: pointer;
   float: right; 
 }
-
 .close-btn:hover {
   background: #b22234; 
+}
+.top-bar {
+  background-color: #1e1e1e; 
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 0 20px;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  z-index: 1200; 
+}
+.right-buttons-container {
+  display: flex; 
+  align-items: center; 
+  gap: 10px;
 }

@@ -2,10 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms'; 
 import { Router } from '@angular/router'; 
-
 import { Auth, user, User } from '@angular/fire/auth';
 import { Firestore, collection, doc, setDoc, getDoc, updateDoc } from '@angular/fire/firestore';
-
 import { Subscription } from 'rxjs';
 export interface CalendarDay {
   day: number | string;
